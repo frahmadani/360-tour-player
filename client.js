@@ -22,6 +22,18 @@ function init(bundle, parent, options = {}) {
     0.1
   )
 
+  // Render your app content to the default cylinder surface
+  r360.renderToSurface(
+    r360.createRoot('ConnectedButtons', { /* initial props */ }),
+
+    // Use custom surfaces for button and info
+    // Comment below line to use the default surface instead
+    buttonsPanel
+
+    // Uncomment below to use the default surface instead
+    // r360.getDefaultSurface()
+  );
+
   const infoPanel = new Surface(
     400,
     550,
@@ -33,21 +45,9 @@ function init(bundle, parent, options = {}) {
     0.1
   )
 
-  // Render your app content to the default cylinder surface
-  r360.renderToSurface(
-    r360.createRoot('Buttons', { /* initial props */ }),
-
-    // Use custom surfaces for button and info
-    // Comment below line to use the default surface instead
-    buttonsPanel
-
-    // Uncomment below to use the default surface instead
-    // r360.getDefaultSurface()
-  );
-
   // Render the second surface (infoPanel)
   r360.renderToSurface(
-    r360.createRoot('InfoPanel', { /* initial props */ }),
+    r360.createRoot('ConnectedHouseInfoPanel', { /* initial props */ }),
     infoPanel
   );
 

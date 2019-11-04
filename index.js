@@ -8,6 +8,7 @@ import {
   View,
   VrButton
 } from 'react-360';
+import { connect } from './store';
 import house from './data/houseData';
 
 export default class Buttons extends React.Component {
@@ -64,7 +65,7 @@ export default class Buttons extends React.Component {
   }
 };
 
-export class InfoPanel extends React.Component {
+export class HouseInfoPanel extends React.Component {
   // state always hold info about current room
   state = {
     room: house.House.roomName,
@@ -118,6 +119,9 @@ export class InfoPanel extends React.Component {
   }
 };
 
+const ConnectedButtons = connect(Buttons);
+const ConnectedHouseInfoPanel = connect(HouseInfoPanel);
+
 const styles = StyleSheet.create({
   panel: {
     // Fill the entire surface
@@ -135,6 +139,6 @@ const styles = StyleSheet.create({
   }
 });
 
-AppRegistry.registerComponent('Buttons', () => Buttons);
-AppRegistry.registerComponent('InfoPanel', () => InfoPanel);
+AppRegistry.registerComponent('ConnectedButtons', () => ConnectedButtons);
+AppRegistry.registerComponent('ConnectedHouseInfoPanel', () => ConnectedHouseInfoPanel);
 
