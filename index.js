@@ -8,26 +8,14 @@ import {
   View,
   VrButton
 } from 'react-360';
-import { connect } from './store';
+import { connect, changeRoom } from './store';
 import house from './data/houseData';
 
 export default class Buttons extends React.Component {
-  // state always hold info about current room
-  state = {
-    room: house.House.roomName,
-    info: house.House.info,
-    adjacentRooms: house.House.adjacentRooms
-  }
 
   // handle click to change state
   clickHandler(roomSelection) {
-    this.setState({
-      room: house[`${roomSelection}`].roomName,
-      info: house[`${roomSelection}`].info,
-      adjacentRooms: house[`${roomSelection}`].adjacentRooms
-    })
-
-    Environment.setBackgroundImage(asset(`./360_${house[`${roomSelection}`].img}`))
+    changeRoom(roomSelection);
   }
 
   createRoomButtons(adjacentRooms) {
@@ -52,13 +40,8 @@ export default class Buttons extends React.Component {
       <View style={styles.panel}>
         <View style={styles.greetingBox}>
           <Text>Room Selection</Text>
-          <Text> {this.state.room} </Text>
-          {this.createRoomButtons(this.state.adjacentRooms)}
-        </View>
-
-        <View style={styles.greetingBox}>
-          <Text>Room Info</Text>
-          <Text> {this.state.info} </Text>
+          <Text> {this.props.room} </Text>
+          {this.createRoomButtons(this.props.adjacentRooms)}
         </View>
       </View >
     );
@@ -66,53 +49,12 @@ export default class Buttons extends React.Component {
 };
 
 export class HouseInfoPanel extends React.Component {
-  // state always hold info about current room
-  state = {
-    room: house.House.roomName,
-    info: house.House.info,
-    adjacentRooms: house.House.adjacentRooms
-  }
-
-  // handle click to change state
-  clickHandler(roomSelection) {
-    this.setState({
-      room: house[`${roomSelection}`].roomName,
-      info: house[`${roomSelection}`].info,
-      adjacentRooms: house[`${roomSelection}`].adjacentRooms
-    })
-
-    Environment.setBackgroundImage(asset(`./360_${house[`${roomSelection}`].img}`))
-  }
-
-  createRoomButtons(adjacentRooms) {
-    let rooms = adjacentRooms;
-    let buttons = [];
-
-    // spawn the buttons to change rooms, complete with its clickHandlers
-    rooms.map(room => {
-      buttons.push(
-        <VrButton key={`${room}` + `-button`} onClick={() => this.clickHandler(room)}>
-          <Text style={{ backgroundColor: 'green' }}> {room}</Text>
-        </VrButton>
-      )
-    })
-
-    return buttons;
-
-  }
-
   render() {
     return (
       <View style={styles.panel}>
         <View style={styles.greetingBox}>
-          <Text>Room Selection</Text>
-          <Text> {this.state.room} </Text>
-          {this.createRoomButtons(this.state.adjacentRooms)}
-        </View>
-
-        <View style={styles.greetingBox}>
           <Text>Room Info</Text>
-          <Text> {this.state.info} </Text>
+          <Text> {this.props.info} </Text>
         </View>
       </View >
     );
