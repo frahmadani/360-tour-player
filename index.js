@@ -37,7 +37,7 @@ class Button extends React.Component {
         onEnter={() => this.setState({ hover: true })}
         onExit={() => this.setState({ hover: false })}
         onClick={() => this.clickHandler(this.props.room)}>
-        <Text style={{ textAlign: 'center' }}> {this.props.room}</Text>
+        <Text style={{ textAlign: 'center' }}> {this.props.room.split('_').join(' ')}</Text>
       </VrButton>
     )
   }
@@ -61,7 +61,7 @@ export default class ButtonInfoPanel extends React.Component {
       <View>
         <View style={styles.buttonPanel}>
           <Text style={styles.header}>Room Selection</Text>
-          <Text> {this.props.room} </Text>
+          <Text style={{ textAlign: 'center' }}> {this.props.room.split('_').join('-')} </Text>
           {this.createRoomButtons(this.props.adjacentRooms)}
         </View>
       </View >
