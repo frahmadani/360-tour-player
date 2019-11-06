@@ -13,7 +13,7 @@ function init(bundle, parent, options = {}) {
   // Create separate panels for buttons and info
   const buttonsPanel = new Surface(
     400,
-    550,
+    400,
     Surface.SurfaceShape.Flat
   )
 
@@ -24,7 +24,7 @@ function init(bundle, parent, options = {}) {
 
   // Render your app content to the default cylinder surface
   r360.renderToSurface(
-    r360.createRoot('ConnectedButtons', { /* initial props */ }),
+    r360.createRoot('ConnectedButtonInfoPanel', { /* initial props */ }),
 
     // Use custom surfaces for button and info
     // Comment below line to use the default surface instead
@@ -36,7 +36,7 @@ function init(bundle, parent, options = {}) {
 
   const infoPanel = new Surface(
     400,
-    550,
+    400,
     Surface.SurfaceShape.Flat
   )
 
